@@ -25,6 +25,20 @@ Ready-to-run configs for distinct visual forms. All use `device: "cuda"` — cha
 | `config-snowflake.json` | `python generate.py --symmetrical --config config-snowflake.json` | 6-fold + mirror, icy tones |
 | `config-halos.json` | `python generate.py --config config-halos.json` | Ghosting / halos via negative weight |
 
+### Expected Outputs
+
+These previews come from `assets/*` and map directly to the preset commands above.
+
+| Preset | Command | Preview |
+|---|---|---|
+| Baseline organic | `python generate.py` | ![Baseline organic output](assets/output.png) |
+| Geometric mandala | `python generate.py --symmetrical` | ![Symmetrical mandala output](assets/output-symm.png) |
+| Fractal hierarchy | `python generate.py --config config-fractal.json` | ![Fractal preset output](assets/output-fractal.png) |
+| Organic cells | `python generate.py --config config-cells.json` | ![Cells preset output](assets/output-cells.png) |
+| Stripe labyrinth | `python generate.py --symmetrical --config config-maze.json` | ![Maze preset output](assets/output-maze.png) |
+| Snowflake | `python generate.py --symmetrical --config config-snowflake.json` | ![Snowflake preset output](assets/output-snowflake.png) |
+| Halos / ghosting | `python generate.py --config config-halos.json` | ![Halos preset output](assets/output-halos.png) |
+
 **Key differences at a glance:**
 
 | Preset | Scales | Symmetry | Blur | What drives the look |
