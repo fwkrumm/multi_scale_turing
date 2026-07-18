@@ -1,0 +1,52 @@
+{
+  "width": 800,
+  "height": 800,
+  "iterations": 300,
+  "seed": 42,
+  "blur_method": "gaussian",
+  "color_mode": true,
+  "color_lerp_alpha": 0.01,
+  "output_path": "output.png",
+  "device": "cuda",
+  "save_frames": false,
+  "frames_dir": "frames",
+  "symmetry": 8,
+  "mirror": true,
+  "scales": [
+    {
+      "activator_radius": 100,
+      "inhibitor_radius": 200,
+      "small_amount": 0.05,
+      "weight": 1.0,
+      "color": [220, 20, 60]
+    },
+    {
+      "activator_radius": 20,
+      "inhibitor_radius": 40,
+      "small_amount": 0.04,
+      "weight": 1.0,
+      "color": [255, 140, 0]
+    },
+    {
+      "activator_radius": 10,
+      "inhibitor_radius": 20,
+      "small_amount": 0.03,
+      "weight": 1.0,
+      "color": [50, 205, 50]
+    },
+    {
+      "activator_radius": 5,
+      "inhibitor_radius": 10,
+      "small_amount": 0.02,
+      "weight": 1.0,
+      "color": [30, 144, 255]
+    },
+    {
+      "activator_radius": 1,
+      "inhibitor_radius": 2,
+      "small_amount": 0.01,
+      "weight": 1.0,
+      "color": [148, 0, 211]
+    }
+  ]
+}

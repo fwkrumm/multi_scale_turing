@@ -1,0 +1,20 @@
+{
+  "width": 800,
+  "height": 800,
+  "iterations": 300,
+  "seed": 42,
+  "blur_method": "gaussian",
+  "color_mode": true,
+  "color_lerp_alpha": 0.015,
+  "output_path": "output-cells.png",
+  "device": "cuda",
+  "save_frames": false,
+  "frames_dir": "frames-cells",
+  "symmetry": 1,
+  "mirror": false,
+  "scales": [
+    {"activator_radius": 50, "inhibitor_radius": 200, "small_amount": 0.050, "weight": 1.0, "color": [ 20, 180,  80]},
+    {"activator_radius": 10, "inhibitor_radius":  40, "small_amount": 0.040, "weight": 1.0, "color": [ 30, 220, 140]},
+    {"activator_radius":  2, "inhibitor_radius":   8, "small_amount": 0.025, "weight": 1.0, "color": [200, 240, 100]}
+  ]
+}

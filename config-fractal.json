@@ -1,0 +1,24 @@
+{
+  "width": 800,
+  "height": 800,
+  "iterations": 500,
+  "seed": 42,
+  "blur_method": "gaussian",
+  "color_mode": true,
+  "color_lerp_alpha": 0.008,
+  "output_path": "output-fractal.png",
+  "device": "cuda",
+  "save_frames": false,
+  "frames_dir": "frames-fractal",
+  "symmetry": 1,
+  "mirror": false,
+  "scales": [
+    {"activator_radius": 128, "inhibitor_radius": 256, "small_amount": 0.050, "weight": 1.0, "color": [180,  20,  20]},
+    {"activator_radius":  64, "inhibitor_radius": 128, "small_amount": 0.045, "weight": 1.0, "color": [220,  80,  20]},
+    {"activator_radius":  32, "inhibitor_radius":  64, "small_amount": 0.040, "weight": 1.0, "color": [220, 160,  30]},
+    {"activator_radius":  16, "inhibitor_radius":  32, "small_amount": 0.030, "weight": 1.0, "color": [ 50, 180,  50]},
+    {"activator_radius":   8, "inhibitor_radius":  16, "small_amount": 0.025, "weight": 1.0, "color": [ 30, 140, 220]},
+    {"activator_radius":   4, "inhibitor_radius":   8, "small_amount": 0.015, "weight": 1.0, "color": [ 80,  50, 200]},
+    {"activator_radius":   1, "inhibitor_radius":   2, "small_amount": 0.010, "weight": 1.0, "color": [160,  20, 200]}
+  ]
+}

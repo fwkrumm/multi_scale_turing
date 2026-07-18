@@ -1,0 +1,21 @@
+{
+  "width": 800,
+  "height": 800,
+  "iterations": 350,
+  "seed": 42,
+  "blur_method": "gaussian",
+  "color_mode": true,
+  "color_lerp_alpha": 0.018,
+  "output_path": "output-snowflake.png",
+  "device": "cuda",
+  "save_frames": false,
+  "frames_dir": "frames-snowflake",
+  "symmetry": 6,
+  "mirror": true,
+  "scales": [
+    {"activator_radius": 15, "inhibitor_radius": 30, "small_amount": 0.040, "weight": 1.0, "color": [200, 230, 255]},
+    {"activator_radius":  5, "inhibitor_radius": 10, "small_amount": 0.030, "weight": 1.0, "color": [120, 180, 255]},
+    {"activator_radius":  2, "inhibitor_radius":  4, "small_amount": 0.020, "weight": 1.0, "color": [ 60, 120, 220]},
+    {"activator_radius":  1, "inhibitor_radius":  2, "small_amount": 0.010, "weight": 1.0, "color": [255, 255, 255]}
+  ]
+}
