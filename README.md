@@ -1,4 +1,4 @@
-# Multi-Scale Turing Pattern Generator
+# Multi-Scale Turing Pattern Generator (AI GENERATED)
 
 Python implementation of Jonathan McCabe's multi-scale Turing pattern algorithm, as described by [Jason Rampe](https://softologyblog.wordpress.com/2011/07/05/multi-scale-turing-patterns/).
 
@@ -17,11 +17,12 @@ Ready-to-run configs for distinct visual forms. All use `device: "cuda"` — cha
 
 | File | Command | Visual style |
 |---|---|---|
-| `config.json` | `python generate.py` | Geometric mandala (8-fold + mirror) |
+| `config.json` | `python generate.py` | Baseline organic pattern (symmetry disabled by default) |
+| `config.json` | `python generate.py --symmetrical` | Geometric mandala (8-fold + mirror) |
 | `config-fractal.json` | `python generate.py --config config-fractal.json` | Fractal hierarchy, 7 scales, 2× ratio each |
 | `config-cells.json` | `python generate.py --config config-cells.json` | Organic blobs / cell membranes |
-| `config-maze.json` | `python generate.py --config config-maze.json` | Stripe labyrinth, 4-fold symmetric |
-| `config-snowflake.json` | `python generate.py --config config-snowflake.json` | 6-fold + mirror, icy tones |
+| `config-maze.json` | `python generate.py --symmetrical --config config-maze.json` | Stripe labyrinth, 4-fold symmetric |
+| `config-snowflake.json` | `python generate.py --symmetrical --config config-snowflake.json` | 6-fold + mirror, icy tones |
 | `config-halos.json` | `python generate.py --config config-halos.json` | Ghosting / halos via negative weight |
 
 **Key differences at a glance:**
@@ -52,8 +53,9 @@ Options:
   --grayscale          Force grayscale output
   --save-frames        Save each iteration as a PNG frame
   --frames-dir PATH    Override frames_dir from config
-  --symmetry N         N-fold rotational symmetry (1=off)
-  --mirror             Add mirror symmetry
+  --symmetrical        Enable symmetry feature (disabled by default)
+  --symmetry N         N-fold rotational symmetry (used only with --symmetrical)
+  --mirror             Add mirror symmetry (used only with --symmetrical)
   --device cpu|cuda    Compute device (default: cpu)
 ```
 
@@ -185,14 +187,16 @@ Falls back gracefully: if CuPy is not installed and `device` is omitted, runs on
 
 ## Mandala / Symmetric Patterns
 
-Set `symmetry` to an integer ≥ 2 to enforce N-fold rotational symmetry around the image centre after each step. Add `"mirror": true` for reflective symmetry on top (doubles total folds).
+Symmetry feature is opt-in. Add `--symmetrical` to activate it. Without `--symmetrical`, symmetry is off even if config has `symmetry` / `mirror` values.
+
+With `--symmetrical` enabled, set `symmetry` to an integer ≥ 2 to enforce N-fold rotational symmetry around image centre after each step. Add `"mirror": true` for reflective symmetry on top (doubles total folds).
 
 ```json
 "symmetry": 8,
 "mirror": true
 ```
 
-This is the default config — 8-fold rotation + mirror = 16 symmetric copies averaged each step.
+In `config.json`, `symmetry: 8` + `mirror: true` gives 16 symmetric copies averaged each step, but only when you run with `--symmetrical`.
 
 | `symmetry` | `mirror` | total folds | looks like |
 |---|---|---|---|
@@ -204,8 +208,9 @@ This is the default config — 8-fold rotation + mirror = 16 symmetric copies av
 
 **CLI:**
 ```bash
-python generate.py --symmetry 8 --mirror
-python generate.py --symmetry 1          # disable symmetry
+python generate.py --symmetrical --symmetry 8 --mirror
+python generate.py --symmetrical --config config-snowflake.json
+python generate.py                        # symmetry off
 ```
 
 > **Performance note:** each step runs `symmetry` (or `2×symmetry` with mirror) additional rotation operations. Symmetry 8+mirror on an 800×800 grid adds ~0.3 s/step. Reduce image size or use `blur_method: "box"` to speed up.

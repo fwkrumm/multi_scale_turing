@@ -1,9 +1,3 @@
-numpy>=1.24
-scipy>=1.11
-Pillow>=10.0
-tqdm>=4.65
-
-# GPU acceleration (requires CUDA toolkit):
-cupy-cuda13x>=13.0    # CUDA 13.x  ← your setup (RTX 3090 + CUDA 13.1)
-# cupy-cuda12x>=12.0    # CUDA 12.x (uncomment instead if on CUDA 12)
-# cupy-cuda11x>=11.0    # CUDA 11.x (uncomment instead if on CUDA 11)
+.venv
+.png
+my_frames*

@@ -311,12 +311,16 @@ def main() -> None:
         help="Override frames output directory from config (default: frames/)"
     )
     parser.add_argument(
+        "--symmetrical", action="store_true",
+        help="Enable symmetry feature (disabled by default)"
+    )
+    parser.add_argument(
         "--symmetry", type=int, default=None,
-        help="N-fold rotational symmetry (1=off, 6/8/12 for mandalas)"
+        help="N-fold rotational symmetry (used only with --symmetrical)"
     )
     parser.add_argument(
         "--mirror", action="store_true",
-        help="Add mirror symmetry on top of rotational symmetry"
+        help="Add mirror symmetry on top of rotational symmetry (used only with --symmetrical)"
     )
     parser.add_argument(
         "--device", choices=["cpu", "cuda"], default=None,
@@ -347,10 +351,15 @@ def main() -> None:
         cfg["save_frames"] = True
     if args.frames_dir:
         cfg["frames_dir"] = args.frames_dir
-    if args.symmetry is not None:
-        cfg["symmetry"] = args.symmetry
-    if args.mirror:
-        cfg["mirror"] = True
+    if args.symmetrical:
+        if args.symmetry is not None:
+            cfg["symmetry"] = args.symmetry
+        if args.mirror:
+            cfg["mirror"] = True
+    else:
+        # Symmetry feature is explicitly opt-in.
+        cfg["symmetry"] = 1
+        cfg["mirror"] = False
     if args.device is not None:
         cfg["device"] = args.device
 
@@ -391,7 +400,9 @@ def main() -> None:
 
     rng = np.random.default_rng(seed)
 
-    sym_label = f"{symmetry}-fold" + ("+mirror" if mirror else "") if symmetry > 1 else "off"
+    sym_label = "off"
+    if args.symmetrical and symmetry > 1:
+        sym_label = f"{symmetry}-fold" + ("+mirror" if mirror else "")
     print(f"Grid: {width}×{height}  |  Scales: {len(scales)}  |  "
           f"Iterations: {iterations}  |  Blur: {blur_method}  |  "
           f"Color: {color_mode}  |  Symmetry: {sym_label}  |  "
