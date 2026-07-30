@@ -37,7 +37,7 @@ jobs:
 
       - name: Validate smoke image is non-black
         run: |
-          uv run --python .venv/bin/python -c "from PIL import Image; import numpy as np; a=np.array(Image.open('/tmp/ci-smoke.png')); mean=float(a.mean()); std=float(a.std()); print(f'mean={mean:.2f}, std={std:.2f}'); assert mean > 10.0, 'smoke image too dark'; assert mean < 245.0, 'smoke image too bright'; assert std > 8.0, 'smoke image too flat/black'"
+          uv run --python .venv/bin/python python -c "from PIL import Image; import numpy as np; a=np.array(Image.open('/tmp/ci-smoke.png')); mean=float(a.mean()); std=float(a.std()); print(f'mean={mean:.2f}, std={std:.2f}'); assert mean > 10.0, 'smoke image too dark'; assert mean < 245.0, 'smoke image too bright'; assert std > 8.0, 'smoke image too flat/black'"
 
       - name: Upload CI smoke image
         uses: actions/upload-artifact@v4
