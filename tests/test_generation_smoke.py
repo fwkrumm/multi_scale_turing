@@ -1,8 +1,12 @@
+import sys
 import tempfile
 from pathlib import Path
 
 import numpy as np
 from PIL import Image
+
+# Ensure repo root is on import path when pytest rootdir differs in CI.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from generate import Scale, build_scales, load_config, run_simulation, save_image
 

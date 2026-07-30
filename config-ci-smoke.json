@@ -1,10 +1,10 @@
 {
   "width": 160,
   "height": 160,
-  "iterations": 64,
+  "iterations": 48,
   "seed": 42,
   "blur_method": "gaussian",
-  "color_mode": true,
+  "color_mode": false,
   "color_lerp_alpha": 0.18,
   "output_path": "ci-smoke.png",
   "device": "cpu",
