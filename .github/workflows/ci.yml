@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -r requirements_tests.txt
+
+      - name: Run smoke tests
+        run: |
+          uv run --python .venv/bin/python pytest -q tests
+
+      - name: Run a short generation smoke test
+        run: |
+          uv run --python .venv/bin/python generate.py --config config-ci-smoke.json --output /tmp/ci-smoke.png
+
+      - name: Upload CI smoke image
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-smoke-image
+          path: /tmp/ci-smoke.png

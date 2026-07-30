@@ -11,6 +11,20 @@ python generate.py
 
 Outputs `output.png` (or whatever `output_path` is set to in `config.json`).
 
+## Testing
+
+```bash
+pip install -r requirements_tests.txt
+pytest -q tests
+```
+
+A short generation smoke run is also available:
+
+```bat
+REM Windows (cmd.exe / batch)
+python generate.py --config config-ci-smoke.json --output "%TEMP%\ci-smoke.png"
+```
+
 ## Presets
 
 Ready-to-run configs for distinct visual forms. All use `device: "cuda"` — change to `"cpu"` if needed.

@@ -1,0 +1,52 @@
+{
+  "width": 160,
+  "height": 160,
+  "iterations": 64,
+  "seed": 42,
+  "blur_method": "gaussian",
+  "color_mode": true,
+  "color_lerp_alpha": 0.18,
+  "output_path": "ci-smoke.png",
+  "device": "cpu",
+  "save_frames": false,
+  "frames_dir": "frames",
+  "symmetry": 1,
+  "mirror": false,
+  "scales": [
+    {
+      "activator_radius": 16,
+      "inhibitor_radius": 32,
+      "small_amount": 0.05,
+      "weight": 1.0,
+      "color": [220, 20, 60]
+    },
+    {
+      "activator_radius": 8,
+      "inhibitor_radius": 16,
+      "small_amount": 0.04,
+      "weight": 1.0,
+      "color": [255, 140, 0]
+    },
+    {
+      "activator_radius": 4,
+      "inhibitor_radius": 8,
+      "small_amount": 0.03,
+      "weight": 1.0,
+      "color": [50, 205, 50]
+    },
+    {
+      "activator_radius": 2,
+      "inhibitor_radius": 4,
+      "small_amount": 0.02,
+      "weight": 1.0,
+      "color": [30, 144, 255]
+    },
+    {
+      "activator_radius": 1,
+      "inhibitor_radius": 2,
+      "small_amount": 0.01,
+      "weight": 1.0,
+      "color": [148, 0, 211]
+    }
+  ]
+}
